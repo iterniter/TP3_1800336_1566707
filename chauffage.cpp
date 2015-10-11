@@ -11,6 +11,66 @@
 
 using namespace std;
 
+//__________________________________________________________________________________________________________________________
+// TP2
+//__________________________________________________________________________________________________________________________
+
+Chauffage::Chauffage(unsigned int id) : ObjetConnecte(id), estAllume_(false), estAutomatique_(false)
+{
+}
+
+void Chauffage::seConnecter(Routeur* routeur)
+{
+	routeur->accepterConnexion(this);
+}
+
+void Chauffage::recevoirMessage(const Message& message)
+{
+	switch (message.getType())
+	{
+	case ALLUMAGE_AUTOMATIQUE:
+		cout << "Le chauffage est en mode automatique." << endl;
+		estAutomatique_ = true;
+	case ALLUMER_CHAUFFAGE:
+		if (!estAllume_)
+		{
+			allumer();
+			cout << "Chauffage# " << ObjetConnecte::getId() << " allume." << endl;
+		}
+		break;
+	case ETTEINDRE_CHAUFFAGE:
+		if (estAllume_)
+		{
+			eteindre();
+			cout << "Chauffage# " << ObjetConnecte::getId() << " eteint." << endl;
+		}
+		break;
+	case NOTIFICATION_VISITEUR:
+		cout << "Cette notification n'est pas destinée au chauffage !" << endl;
+		break;
+	}
+}
+
+bool Chauffage::getEtat() const
+{
+	return estAllume_;
+}
+
+bool Chauffage::getAutomatique() const
+{
+	return estAutomatique_;
+}
+
+void Chauffage::setEtat(bool nouveauEtat)
+{
+	estAllume_ = nouveauEtat;
+}
+
+void Chauffage::setAutomatique(const bool typeChauffage)
+{
+	estAutomatique_ = typeChauffage;
+}
+
 
 
 //__________________________________________________________________________________________________________________________

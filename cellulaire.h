@@ -23,15 +23,15 @@ class Cellulaire : public ObjetConnecte
 public:
 	//TP3
 	Cellulaire(unsigned int id, string numeroDeCell);
-	virtual void seConnecter(Routeur Routeur);
-	virtual string recevoirMessage(const string message);
 
+	void seConnecter(Routeur* routeur);
+	void recevoirMessage(const Message& message) const;
 
 	// TP2
 	//surcharge de l operateur==
-	bool operator==(const Cellulaire& cellulaire2);
+	bool operator==(const Cellulaire& cellulaire2) const;
 	//surcharge de l operateur<
-	bool operator<(const Cellulaire& cellulaire2);
+	bool operator<(const Cellulaire& cellulaire2) const;
 	//surcharge de l operateur=
 	Cellulaire& operator=(const Cellulaire& cellulaire2);
 	//fonction non membre de surcharge de l operateur<<

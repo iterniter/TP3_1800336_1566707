@@ -12,9 +12,11 @@
 
 #include <vector>
 #include <string>
-#include "Personne.h"
-#include "ObjetConnecte.h"
-#include "Cellulaire.h"
+#include "personne.h"
+#include "objetConnecte.h"
+#include "cellulaire.h"
+
+using namespace std;
 
 class Maison : public ObjetConnecte
 {
@@ -22,7 +24,9 @@ public:
 	// TP3
 
 	// Constructeur
-	Maison(unsigned int id, const std::string& adresse, float position);
+	Maison(unsigned int id, const string& adresse, float position);
+
+	void seConnecter(Routeur* routeur);
 
 	// À compléter...
 
@@ -44,17 +48,17 @@ public:
 	void observerCellulaires(float temps_observation = 60.0);
 
 	// accesseurs et modificateurs
-	std::string getAdresse() const;
-	void setAdresse(std::string adresse);
+	string getAdresse() const;
+	void setAdresse(string adresse);
 
 	float getPosition() const;
 	void setPosition(float position);
 
 private:
 	// TP1 et TP2
-	std::string adresse_;
-	std::vector<Personne*> occupants_;
-	std::vector<Cellulaire*> cellulairesEnregistres_;
+	string adresse_;
+	vector<Personne*> occupants_;
+	vector<Cellulaire*> cellulairesEnregistres_;
 
 	// position de la maison. La maison est positionnee simplement selon un chiffre.
 	float position_;

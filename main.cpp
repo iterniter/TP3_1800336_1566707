@@ -18,12 +18,25 @@ int main()
 	// 2. Creer une maison, avec l'ID 1, une adresse et la position 14.0.
 	Maison *maison = new Maison(1, "2500 Chemin Polytechnique", 14.0);
 	// Connecter la maison au routeur
-
+	maison->ObjetConnecte::seConnecter(routeur);
 
 	// 3. Creer deux personnes: Philippe Lafrite, Mathilde Lafrite et Francois Lerigolo
+	Personne* philippe = new Personne("Philippe", "Lafrite", 55);
+	Personne* mathilde = new Personne("Mathilde", "Lafrite", 46);
+	Personne* francois = new Personne("Francois", "Lerigolo", 33);
 
 
 	// 4. Creer un cellulaire pour chaque occupant (IDs: 2, 3 et 4)
+	string num1 = "514-430-9999";
+	string num2 = "514-430-8888";
+	string num3 = "514-430-7777";
+	Cellulaire* cell1 = new Cellulaire(2, num1);
+	Cellulaire* cell2 = new Cellulaire(3, num2);
+	Cellulaire* cell3 = new Cellulaire(4, num3);
+
+	philippe->attribuerCellulaire(num1);
+	cell1->setProprietaire(philippe);
+
 
 
 	// 5. Modifier la position des cellulaires de Philippe, Mathilde et Francois a 7.0, 8.0 et 6.0 respectivement
