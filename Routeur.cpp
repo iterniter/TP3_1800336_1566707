@@ -3,6 +3,7 @@
 
 Routeur::Routeur()
 {
+	lol
 }
 
 
