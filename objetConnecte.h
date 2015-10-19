@@ -1,29 +1,38 @@
 #ifndef OBJETCONNECTE_H
 #define OBJETCONNECTE_H
 
+#include <string>
+#include <iostream>
 
-class ObjetConnecte: public Routeur
+#include "message.h"
+
+using namespace std;
+
+class Routeur;
+class ObjetConnecte
 {
 public:
-	// A compléter
 	ObjetConnecte(unsigned int id = 1);
+
 	unsigned int getId() const;
 	bool getEtatDeLaConnexion() const;
 
 	void setId(unsigned int nouveauId);
 	void setEtatDeLaConnexion(bool nouveauEtat);
 
-	virtual void seConnecter(Routeur*);
-	void seDeconnecter() const;
+	void seDeconnecter();
+	void seConnecter(Routeur* routeur);
 
-	void envoyerMessage(const string Message) const;
-	string recevoirMessage(const string Message) const;
+	void envoyerMessage(const Message& message);
+	void recevoirMessage(const Message& message) const;
 
-protected:
+	Routeur* getRouteur() const;
 	
+protected:
+	unsigned int id_;
+
 private:
-  unsigned int id_ ;
   bool etatDeLaconnexion_ ;
-  Routeur routeur_ ;
+  Routeur* routeur_ ;
 };
 #endif

@@ -8,15 +8,33 @@
 
 #include <stdio.h>
 #include "cellulaire.h"
-#include "gps.h"
 
 using namespace std;
 
 //TP3
-Cellulaire::Cellulaire(unsigned int id, string numeroDeCell) :numero_(numeroDeCell)
+Cellulaire::Cellulaire(unsigned int id, string numeroDeCell) : ObjetConnecte(id), numero_(numeroDeCell)
 {
-	ObjetConnecte::setId(id);
+}
 
+void Cellulaire::seConnecter(Routeur* routeur)
+{
+	routeur->accepterConnexion(this);
+}
+
+void Cellulaire::recevoirMessage(const Message& message) const
+{
+	if (message.getType() == NOTIFICATION_VISITEUR)
+	{
+		cout << "Notification visiteur recue par le	cellulaire " << message.getSrc() << "." << endl;
+		/*
+		C'est à faire.. mais j'aurais envie de faire un truc qui ressemble à ça :
+		this->getRouteur()->getCellulaire(message.getSrc())->getNumeroCellulaire();
+		*/
+	}
+	else
+	{
+		cout << "Le message recu n est pas une notification !" << endl;
+	}
 }
 
 //__________________________________________________________________________________________________________________________
@@ -29,14 +47,12 @@ Cellulaire::Cellulaire(unsigned int id, string numeroDeCell) :numero_(numeroDeCe
 * Parametres:	- (const Cellulaire&) cellulaire2
 * Retour:		- (booleen) indiquant si le cellulaire courant est "==" à celui passé en parametre
 ****************************************************************************/
-bool Cellulaire::operator==(const Cellulaire& cellulaire2)
+bool Cellulaire::operator==(const Cellulaire& cellulaire2) const
 {
 	if (this->getProprietaire()->getNumeroCellulaire() == cellulaire2.numero_)
-		if (this->getProprietaire()->getNom() == cellulaire2.getProprietaire()->getNom())
-			if (this->getProprietaire()->getPrenom() == cellulaire2.getProprietaire()->getPrenom())
-				return true;
+		if (this->getProprietaire() == cellulaire2.getProprietaire())
+			return true;
 	return false;
-
 }
 
 /****************************************************************************
@@ -45,7 +61,7 @@ bool Cellulaire::operator==(const Cellulaire& cellulaire2)
 * Parametres:	- (const Cellulaire&) cellulaire2
 * Retour:		- (booleen) indiquant si le cellulaire courant est "<" à celui passé en parametre
 ****************************************************************************/
-bool Cellulaire::operator<(const Cellulaire& cellulaire2)
+bool Cellulaire::operator<(const Cellulaire& cellulaire2) const
 { 
 	string chaine1 = (*this).numero_;
 	string chaine2 = cellulaire2.getNumero();

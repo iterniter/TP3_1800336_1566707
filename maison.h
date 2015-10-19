@@ -12,9 +12,13 @@
 
 #include <vector>
 #include <string>
-#include "Personne.h"
-#include "ObjetConnecte.h"
-#include "Cellulaire.h"
+#include "personne.h"
+#include "objetConnecte.h"
+#include "cellulaire.h"
+#include "Routeur.h"
+#include "chauffage.h"
+
+using namespace std;
 
 class Maison : public ObjetConnecte
 {
@@ -22,7 +26,9 @@ public:
 	// TP3
 
 	// Constructeur
-	Maison(unsigned int id, const std::string& adresse, float position);
+	Maison(unsigned int id, const string& adresse, float position);
+
+	void seConnecter(Routeur* routeur);
 
 	// À compléter...
 
@@ -33,7 +39,7 @@ public:
 	void ajouterOccupant(Personne* personne);
 
 	// cette fonction permet de savoir si une personne, passee en parametre, fait partie des occupants de la maison.
-	bool estOccupant(const Personne* personne) const;
+	bool estOccupant(Personne* personne);
 
 	// cette fonction permet de savoir si la maison est vide, c'est-à-dire si aucun occupant n'est present dans la maison.
 	bool estVide() const;
@@ -44,20 +50,20 @@ public:
 	void observerCellulaires(float temps_observation = 60.0);
 
 	// accesseurs et modificateurs
-	std::string getAdresse() const;
-	void setAdresse(std::string adresse);
+	string getAdresse() const;
+	void setAdresse(string adresse);
 
 	float getPosition() const;
 	void setPosition(float position);
 
 private:
 	// TP1 et TP2
-	std::string adresse_;
-	std::vector<Personne*> occupants_;
-	std::vector<Cellulaire*> cellulairesEnregistres_;
+	string adresse_;
+	vector<Personne*> occupants_;
+	vector<Cellulaire*> cellulairesObserves_;
+	vector<Chauffage*> listDeChauffage_;
 
-	// position de la maison. La maison est positionnee simplement selon un chiffre.
-	float position_;
+	float positionDeLaMaison_;
 };
 
 #endif
