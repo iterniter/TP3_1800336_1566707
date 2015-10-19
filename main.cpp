@@ -1,8 +1,8 @@
 #include <iostream>
 #include "Routeur.h"
-#include "ObjetConnecte.h"
-#include "Cellulaire.h"
-#include "Chauffage.h"
+#include "objetConnecte.h"
+#include "cellulaire.h"
+#include "chauffage.h"
 
 using namespace std;
 
@@ -37,38 +37,53 @@ int main()
 	philippe->attribuerCellulaire(num1);
 	cell1->setProprietaire(philippe);
 
+	mathilde->attribuerCellulaire(num2);
+	cell2->setProprietaire(mathilde);
+
+	francois->attribuerCellulaire(num3);
+	cell3->setProprietaire(francois);
 
 
 	// 5. Modifier la position des cellulaires de Philippe, Mathilde et Francois a 7.0, 8.0 et 6.0 respectivement
-
+	cell1->setPosition(7.0);
+	cell2->setPosition(8.0);
+	cell3->setPosition(6.0);
 
 	// 6. Ajouter Philippe et Mathilde comme occupants de la maison
 	// Lorsqu'on ajoute un occupant a la maison, son cellulaire doit egalement etre ajoute.
-
+	maison->ajouterOccupant(philippe);
+	maison->ajouterCellulaire(cell1);
+	maison->ajouterOccupant(mathilde);
+	maison->ajouterCellulaire(cell2);
 
 	// 7. Ajouter le cellulaire de francois aux cellulaires observes par la maison, sans que Francois soit occupant de la maison.
-
+	maison->ajouterCellulaire(cell3);
 
 	// 8. Créer au moins 4 chauffages dont au moins 2 automatiques et les connecter au routeur
 	// Attention à ne pas leur attribuer des IDs similaires aux IDs déjà attribués(commencer à 5)
-
+	Chauffage* chauffage1 = new Chauffage(5);
+	chauffage1->setAutomatique(true);
+	Chauffage* chauffage2 = new Chauffage(6);
+	chauffage2->setAutomatique(true);
+	Chauffage* chauffage3 = new Chauffage(7);
+	Chauffage* chauffage4 = new Chauffage(8);
 
 	/*###########################*/
 	/*     TEST D'UN MESSAGE     */
 	/*###########################*/
 
 	// 1. Connecter le cellulaire de Phillipe au routeur
-
+	cell1->seConnecter(routeur);
 
 	// 2. Créer un message allant du cellulaire de Phillipe vers un chauffage non automatique parmis ceux créés plus haut
 	// Le message est de type ALLUMER_CHAUFFAGE
-
+	Message mess1(2, 7, ALLUMER_CHAUFFAGE);
 
 	// 3. Envoyer le message depuis le cellulaire de Phillipe
-
+	cell1->envoyerMessage(mess1);
 
 	// 4. Deconnecter le cellulaire de Phillipe
-
+	cell1->seDeconnecter();
 
 
 	/*##################################*/

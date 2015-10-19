@@ -28,6 +28,8 @@ public:
 	bool getAutomatique() const;
 	//setter de l attribut Automatique_
 	void setAutomatique(const bool typeChauffage);
+	// Khalil: void setEtat(const bool& nouveauEtat);
+	// Khalil : void setAutomatique(bool onOff);
 
 	void seConnecter(Routeur* routeur);
 	void recevoirMessage(const Message& message); // N'est plus const car on MAJ l'attribut estAutomatique_

@@ -1,7 +1,7 @@
 #ifndef ROUTEUR_H
 #define ROUTEUR_H
 
-#include  <vector>
+#include <vector>
 #include <iostream>
 #include <stdio.h>
 
@@ -9,7 +9,7 @@
 #include "maison.h"
 #include "cellulaire.h"
 #include "message.h"
-#include "ObjetConnecte.h"
+#include "objetConnecte.h"
 
 class Routeur
 {

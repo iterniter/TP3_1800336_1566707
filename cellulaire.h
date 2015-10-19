@@ -13,7 +13,7 @@
 #include <iostream>
 #include "gps.h"
 #include "personne.h"
-#include "ObjetConnecte.h"
+#include "objetConnecte.h"
 #include "Routeur.h"
 
 using namespace std;
@@ -49,12 +49,14 @@ public:
     
     string getNumero() const;
     void setNumero(string numero);
+	// Khalil : void setNumero(const string& numero);
     
     Personne* getProprietaire() const;
     void setProprietaire(Personne* personne);
     
     float getPosition() const;
     void setPosition(float position);
+	// Khalil : void setPosition(const float& position);
     
 private:
     string numero_;

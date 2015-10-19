@@ -15,6 +15,8 @@
 #include "personne.h"
 #include "objetConnecte.h"
 #include "cellulaire.h"
+#include "Routeur.h"
+#include "chauffage.h"
 
 using namespace std;
 
@@ -37,7 +39,7 @@ public:
 	void ajouterOccupant(Personne* personne);
 
 	// cette fonction permet de savoir si une personne, passee en parametre, fait partie des occupants de la maison.
-	bool estOccupant(const Personne* personne) const;
+	bool estOccupant(Personne* personne);
 
 	// cette fonction permet de savoir si la maison est vide, c'est-à-dire si aucun occupant n'est present dans la maison.
 	bool estVide() const;
@@ -58,10 +60,10 @@ private:
 	// TP1 et TP2
 	string adresse_;
 	vector<Personne*> occupants_;
-	vector<Cellulaire*> cellulairesEnregistres_;
+	vector<Cellulaire*> cellulairesObserves_;
+	vector<Chauffage*> listDeChauffage_;
 
-	// position de la maison. La maison est positionnee simplement selon un chiffre.
-	float position_;
+	float positionDeLaMaison_;
 };
 
 #endif

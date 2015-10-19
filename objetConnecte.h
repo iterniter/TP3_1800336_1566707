@@ -9,7 +9,7 @@
 using namespace std;
 
 class Routeur;
-class ObjetConnecte:
+class ObjetConnecte
 {
 public:
 	ObjetConnecte(unsigned int id = 1);
@@ -20,7 +20,7 @@ public:
 	void setId(unsigned int nouveauId);
 	void setEtatDeLaConnexion(bool nouveauEtat);
 
-	void seDeconnecter() const;
+	void seDeconnecter();
 	void seConnecter(Routeur* routeur);
 
 	void envoyerMessage(const Message& message);
@@ -28,8 +28,10 @@ public:
 
 	Routeur* getRouteur() const;
 	
+protected:
+	unsigned int id_;
+
 private:
-  unsigned int id_ ;
   bool etatDeLaconnexion_ ;
   Routeur* routeur_ ;
 };

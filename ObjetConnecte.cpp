@@ -40,7 +40,7 @@ void ObjetConnecte::seConnecter(Routeur* routeur)
 {
 	//Ne contient rien, sera redefinie dans les classes filles
 }
-void ObjetConnecte::seDeconnecter() const
+void ObjetConnecte::seDeconnecter()
 {
 	routeur_->retirerConnexion(id_);
 }

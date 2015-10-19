@@ -28,7 +28,7 @@ void Routeur::retirerConnexion(unsigned int id)
 
 	if (!idTrouvee)
 	{
-		for (int i = 0; i < cellulairesConnectes_.size(); i++)
+		for (unsigned int i = 0; i < cellulairesConnectes_.size(); i++)
 		{
 			if (id == cellulairesConnectes_[i]->getId())
 			{
@@ -41,7 +41,7 @@ void Routeur::retirerConnexion(unsigned int id)
 
 	if (!idTrouvee)
 	{
-		for (int i = 0; i < chauffagesConnectes_.size(); i++)
+		for (unsigned int i = 0; i < chauffagesConnectes_.size(); i++)
 		{
 			if (id == chauffagesConnectes_[i]->getId())
 			{
@@ -57,7 +57,7 @@ void Routeur::retirerConnexion(unsigned int id)
 void Routeur::erase(vector<Chauffage*>& chauffage, int pos)
 {
 	unsigned int max = chauffage.size() - 1;
-	for (int i = pos; i < max; i++)
+	for (unsigned int i = pos; i < max; i++)
 	{
 		chauffage[i] = chauffage[i + 1];
 	}
@@ -67,7 +67,7 @@ void Routeur::erase(vector<Chauffage*>& chauffage, int pos)
 void Routeur::erase(vector<Cellulaire*>& cellulaire, int pos)
 {
 	unsigned int max = cellulaire.size() - 1;
-	for (int i = pos; i < max; i++)
+	for (unsigned int i = pos; i < max; i++)
 	{
 		cellulaire[i] = cellulaire[i + 1];
 	}
@@ -84,9 +84,9 @@ void Routeur::acheminerMessage(const Message& message) const
 	if (message.getDest() == 0)
 	{
 		//maisonConnectee_->recevoirMessage(message);
-		for (int i = 0; i < cellulairesConnectes_.size(); i++)
+		for (unsigned int i = 0; i < cellulairesConnectes_.size(); i++)
 			cellulairesConnectes_[i]->recevoirMessage(message);
-		for (int i = 0; i < chauffagesConnectes_.size(); i++)
+		for (unsigned int i = 0; i < chauffagesConnectes_.size(); i++)
 			chauffagesConnectes_[i]->recevoirMessage(message);
 		idTrouvee = true;
 	}
@@ -103,7 +103,7 @@ void Routeur::acheminerMessage(const Message& message) const
 
 	if (!idTrouvee)
 	{
-		for (int i = 0; i < cellulairesConnectes_.size(); i++)
+		for (unsigned int i = 0; i < cellulairesConnectes_.size(); i++)
 		{
 			if (message.getDest() == cellulairesConnectes_[i]->getId())
 			{
@@ -116,7 +116,7 @@ void Routeur::acheminerMessage(const Message& message) const
 
 	if (!idTrouvee)
 	{
-		for (int i = 0; i < chauffagesConnectes_.size(); i++)
+		for (unsigned int i = 0; i < chauffagesConnectes_.size(); i++)
 		{
 			if (message.getDest() == chauffagesConnectes_[i]->getId())
 			{
